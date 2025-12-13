@@ -23,6 +23,7 @@ namespace DailyExchangeRate.Application
                 client =>
                 {
                     client.BaseAddress = new Uri(configuration["NbpApiUrl"]);
+                    client.Timeout = TimeSpan.FromSeconds(30);
                 }
             );
             services.AddScoped<IExchangeRateTableReadingMapper, ExchangeRateTableReadingMapper>();
