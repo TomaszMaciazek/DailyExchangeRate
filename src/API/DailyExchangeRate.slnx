@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="DailyExchangeRate.API/DailyExchangeRate.API.csproj" Id="78ba59bd-521f-47f0-a3c8-74571f66ce1d" />
+  <Project Path="DailyExchangeRate.Application/DailyExchangeRate.Application.csproj" Id="b363ba17-cc30-4a3a-a24a-17fddba0ae7c" />
+  <Project Path="DailyExchangeRate.Domain/DailyExchangeRate.Domain.csproj" Id="1da1488c-1485-4506-8960-ed6c1a94cbcd" />
+  <Project Path="DailyExchangeRate.Infrastructure/DailyExchangeRate.Infrastructure.csproj" Id="f6e441c9-ecc9-4f96-bdea-c4887c29c843" />
+  <Project Path="DailyExchangeRate.Worker/DailyExchangeRate.Worker.csproj" Id="0c3bbbd8-6017-46dd-8d6f-7c54aa55ce29" />
+</Solution>

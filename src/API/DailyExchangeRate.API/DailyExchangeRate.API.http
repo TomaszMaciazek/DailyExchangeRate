@@ -1,0 +1,6 @@
+@DailyExchangeRate.API_HostAddress = http://localhost:5118
+
+GET {{DailyExchangeRate.API_HostAddress}}/exchangerate/
+Accept: application/json
+
+###
