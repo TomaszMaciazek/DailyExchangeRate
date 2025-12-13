@@ -1,7 +1,6 @@
 ﻿using DailyExchangeRate.Application.Dto;
 using DailyExchangeRate.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel;
 
 namespace DailyExchangeRate.API.Controllers
 {
