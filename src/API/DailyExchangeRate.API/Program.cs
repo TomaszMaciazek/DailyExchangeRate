@@ -18,7 +18,18 @@ builder.Logging.AddSerilog(logger);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-if(builder.Environment.IsDevelopment())
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddSwaggerGen(options => {
         var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -30,6 +41,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApiApplication();
 
 var app = builder.Build();
+app.UseCors();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
