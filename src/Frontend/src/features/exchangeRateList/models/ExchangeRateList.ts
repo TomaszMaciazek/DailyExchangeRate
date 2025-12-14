@@ -2,6 +2,6 @@ import type { ExchangeRateListItem } from "./ExchangeRateListItem";
 
 export interface ExchangeRateList{
     no: string;
-    effectiveDate: Date;
+    effectiveDate: string;
     rates: ExchangeRateListItem[];
 }

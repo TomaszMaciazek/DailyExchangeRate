@@ -4,7 +4,7 @@ import { pl } from '../../../shared/i18n';
 
 interface IExchangeRatesHeaderProps {
   no: string;
-  effectiveDate: Date;
+  effectiveDate: string;
 }
 
 export const ExchangeRatesHeader: FC<IExchangeRatesHeaderProps> = ({ no, effectiveDate }) => {
