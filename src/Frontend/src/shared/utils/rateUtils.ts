@@ -1,11 +1,9 @@
 export const calculateRateMultiplier = (mid: number): number => {
-  let multiplier = 1;
-
-  while (mid * multiplier < 1 && multiplier < 100) {
-    multiplier *= 10;
+  if(mid > 1 || Math.floor(mid * 1000000) % 100 === 0 ){
+    return 1;
   }
 
-  return multiplier;
+  return 100;
 };
 
 
