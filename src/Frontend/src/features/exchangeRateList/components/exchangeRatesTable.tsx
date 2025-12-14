@@ -9,8 +9,8 @@ interface IExchangeRateTableProps {
 
 export const ExchangeRatesTable: FC<IExchangeRateTableProps> = ({ items }) => {
   return (
-    <section className="row">
-      <div className="col p-4">
+    <section className="row justify-content-center py-3">
+      <div className="col-xs-12 col-lg-10 col-xl-8 p-4">
         <div className="table-responsive">
           <table className="table table-striped table-hover table-secondary table-bordered">
             <thead className="table-dark">

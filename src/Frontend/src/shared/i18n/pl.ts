@@ -1,4 +1,5 @@
 export const pl = {
+    siteHeader: "Aktualne kursy walut - Narodowy Bank Polski",
     tableNoLabel: 'Dane pobrane z tabeli nr',
     effectiveDateLabel: 'Data publikacji danych:',
     loading: 'Ładowanie danych...',
