@@ -4,7 +4,7 @@ export const pl = {
     loading: 'Ładowanie danych...',
     loadingError: 'Wystąpił błąd podczas pobierania kursów walut',
     noData: 'Brak danych',
-    code: 'Nazwa waluty',
-    currency: 'Kod waluty',
+    code: 'Kod waluty',
+    currency: 'Nazwa waluty',
     mid: 'Średni kurs'
 };
