@@ -9,19 +9,19 @@ interface IExchangeRateTableProps {
 
 export const ExchangeRatesTable: FC<IExchangeRateTableProps> = ({ items }) => {
   return (
-    <section className="row justify-content-center py-3">
+    <section className="row justify-content-center py-3 mx-0">
       <div className="col-xs-12 col-lg-10 col-xl-8 p-4">
         <div className="table-responsive">
           <table className="table table-striped table-hover table-secondary table-bordered">
             <thead className="table-dark">
               <tr>
-                <th scope="col" className="text-center col-6">
+                <th scope="col" className="text-center col-6 py-3">
                   {pl.currency}
                 </th>
-                <th scope="col" className="text-center col-3">
+                <th scope="col" className="text-center col-3 py-3">
                   {pl.code}
                 </th>
-                <th scope="col" className="text-center col-3">
+                <th scope="col" className="text-center col-3 py-3">
                   {pl.mid}
                 </th>
               </tr>
@@ -30,7 +30,6 @@ export const ExchangeRatesTable: FC<IExchangeRateTableProps> = ({ items }) => {
               {items &&
                 items.length > 0 &&
                 items.map((rate) => {
-                  //calculate multiplayer in order to present values similary to the way used on NBP site
                   const multiplier = calculateRateMultiplier(rate.mid);
                   return (
                     <tr key={rate.code}>
