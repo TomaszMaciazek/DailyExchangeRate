@@ -9,9 +9,18 @@ export const ExchangeRatesPage = () => {
 
   if (loading) return <LoadingSpinner />
 
-  if (error) return <p>{error}</p>
+  if (error) return (
+    <div className="alert alert-danger text-center mt-1" role="alert">
+      {error}
+    </div>
+  )
 
-  if (!data) return <p>{pl.noData}</p>
+  if (!data) return (
+    <div className="alert alert-info text-center mt-1" role="alert">
+      {pl.noData}
+    </div>
+  )
+
   return (
     <>
       <ExchangeRatesHeader no={data.no} effectiveDate={data.effectiveDate} />
