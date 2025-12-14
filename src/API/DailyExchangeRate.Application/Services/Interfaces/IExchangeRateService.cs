@@ -4,6 +4,6 @@ namespace DailyExchangeRate.Application.Services.Interfaces
 {
     public interface IExchangeRateService
     {
-        Task<IEnumerable<ExchangeRateListItemDto>> GetCurrentExchangeRatesAsync();
+        Task<ExchangeRateListDto> GetCurrentExchangeRatesAsync();
     }
 }

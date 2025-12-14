@@ -6,6 +6,6 @@ namespace DailyExchangeRate.Infrastructure.Repositories.Interfaces
     public interface IExchangeRateRepository
     {
         Task AddExchangeRateTableReadingAsync(ExchangeRateTableReading reading);
-        Task<IEnumerable<ExchangeRateListItem>> GetCurrentExchangeRatesAsync();
+        Task<ExchangeRateList?> GetCurrentExchangeRatesAsync();
     }
 }

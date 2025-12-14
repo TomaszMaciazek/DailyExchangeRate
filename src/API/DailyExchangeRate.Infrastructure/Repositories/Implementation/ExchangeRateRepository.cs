@@ -11,22 +11,23 @@ namespace DailyExchangeRate.Infrastructure.Repositories.Implementation
 
         public ExchangeRateRepository(ExchangeRateDbContext context) => _context = context;
 
-        public async Task<IEnumerable<ExchangeRateListItem>> GetCurrentExchangeRatesAsync()
-        {
-            return await _context.ExchangeRates
+        public async Task<ExchangeRateList?> GetCurrentExchangeRatesAsync() 
+            => await _context.ExchangeRateTableReadings
+                .Include(r => r.Rates)
                 .AsNoTracking()
-                .Where(x => x.ReadingId == _context.ExchangeRateTableReadings
-                    .OrderByDescending(r => r.Created)
-                    .Select(r => r.Id)
-                    .FirstOrDefault())
-                .Select(x => new ExchangeRateListItem
+                .OrderByDescending(r => r.EffectiveDate)
+                .Select(x => new ExchangeRateList
                 {
-                    Code = x.Code,
-                    Currency = x.Currency,
-                    Mid = x.Mid
+                    No = x.No,
+                    EffectiveDate = x.EffectiveDate,
+                    Rates = x.Rates.Select(r => new ExchangeRateListItem
+                    {
+                        Code = r.Code,
+                        Currency = r.Currency,
+                        Mid = r.Mid
+                    }),
                 })
-                .ToListAsync();
-        }
+                .FirstOrDefaultAsync();
 
         public async Task AddExchangeRateTableReadingAsync(ExchangeRateTableReading reading)
         {

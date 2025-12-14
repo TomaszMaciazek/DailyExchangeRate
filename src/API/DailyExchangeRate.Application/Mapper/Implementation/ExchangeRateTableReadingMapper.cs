@@ -6,7 +6,7 @@ namespace DailyExchangeRate.Application.Mapper.Implementation
 {
     public class ExchangeRateTableReadingMapper : IExchangeRateTableReadingMapper
     {
-        public ExchangeRateTableReading? Map(ExchangeRateTableReadingDto source)
+        public ExchangeRateTableReading Map(ExchangeRateTableReadingDto source)
         {
             if (source == null)
             {
@@ -22,7 +22,7 @@ namespace DailyExchangeRate.Application.Mapper.Implementation
             };
         }
 
-        private ExchangeRate? Map(ExchangeRateDto source)
+        private ExchangeRate Map(ExchangeRateDto source)
         {
             if (source == null)
             {

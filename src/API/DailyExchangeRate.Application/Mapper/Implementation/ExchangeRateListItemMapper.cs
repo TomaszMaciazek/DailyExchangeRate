@@ -6,8 +6,15 @@ namespace DailyExchangeRate.Application.Mapper.Implementation
 {
     public class ExchangeRateListItemMapper : IExchangeRateListItemMapper
     {
-        public IEnumerable<ExchangeRateListItemDto> Map(IEnumerable<ExchangeRateListItem> source) 
-            => source.Select(Map);
+        public ExchangeRateListDto Map(ExchangeRateList source)
+            => source == null
+            ? null
+            : new ExchangeRateListDto
+            {
+                No = source.No,
+                EffectiveDate = source.EffectiveDate,
+                Rates = source.Rates.Select(Map)
+            };
 
         private ExchangeRateListItemDto Map(ExchangeRateListItem source)
         {

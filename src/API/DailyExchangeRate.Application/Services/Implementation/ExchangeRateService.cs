@@ -18,7 +18,7 @@ namespace DailyExchangeRate.Application.Services.Implementation
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<ExchangeRateListItemDto>> GetCurrentExchangeRatesAsync()
+        public async Task<ExchangeRateListDto> GetCurrentExchangeRatesAsync()
             => _mapper.Map(await _repository.GetCurrentExchangeRatesAsync());
     }
 }

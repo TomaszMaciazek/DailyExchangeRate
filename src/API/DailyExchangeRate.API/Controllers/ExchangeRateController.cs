@@ -14,6 +14,11 @@ namespace DailyExchangeRate.API.Controllers
         private readonly IExchangeRateService _exchangeRateService;
         private readonly ILogger<ExchangeRateController> _logger;
 
+        /// <summary>
+        /// Initializes a new instance of the ExchangeRateController class with the specified exchange rate service and logger.
+        /// </summary>
+        /// <param name="exchangeRateService">The service used to retrieve and manage exchange rate data from database.</param>
+        /// <param name="logger">The logger</param>
         public ExchangeRateController(IExchangeRateService exchangeRateService, ILogger<ExchangeRateController> logger)
         {
             _exchangeRateService = exchangeRateService;
@@ -21,11 +26,11 @@ namespace DailyExchangeRate.API.Controllers
         }
 
         /// <summary>
-        /// Retrieves the current exchange rates for all currencies.
+        /// Retrieves the current exchange rates reading data for all currencies.
         /// </summary>
-        /// <returns>A collection of the latest exchange rates as <see cref="ExchangeRateListItemDto"/> objects</returns>
+        /// <returns>A collection of the latest exchange rates with table no and effective date as <see cref="ExchangeRateListDto"/> object</returns>
         [HttpGet]
-        [ProducesResponseType<IEnumerable<ExchangeRateListItemDto>>(StatusCodes.Status200OK)]
+        [ProducesResponseType<ExchangeRateListDto>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetCurrentExchangeRates()
         {
