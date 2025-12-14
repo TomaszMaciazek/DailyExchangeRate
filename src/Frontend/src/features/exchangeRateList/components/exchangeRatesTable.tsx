@@ -1,6 +1,7 @@
 import { type FC } from "react";
 import type { ExchangeRateListItem } from "../models/ExchangeRateListItem";
 import { calculateRateMultiplier } from "../../../shared/utils/rateUtils";
+import { pl } from '../../../shared/i18n';
 
 interface IExchangeRateTableProps {
   items: ExchangeRateListItem[];
@@ -15,13 +16,13 @@ export const ExchangeRatesTable: FC<IExchangeRateTableProps> = ({ items }) => {
             <thead className="table-dark">
               <tr>
                 <th scope="col" className="text-center col-6">
-                  Nazwa waluty
+                  {pl.currency}
                 </th>
                 <th scope="col" className="text-center col-3">
-                  Kod waluty
+                  {pl.code}
                 </th>
                 <th scope="col" className="text-center col-3">
-                  Kurs
+                  {pl.mid}
                 </th>
               </tr>
             </thead>
@@ -48,7 +49,7 @@ export const ExchangeRatesTable: FC<IExchangeRateTableProps> = ({ items }) => {
               {(!items || items.length == 0) && (
                 <tr className="py-3">
                   <td colSpan={3} className="text-center">
-                    <b>Brak danych</b>
+                    <b>{pl.noData}</b>
                   </td>
                 </tr>
               )}

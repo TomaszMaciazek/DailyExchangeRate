@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { ExchangeRateList } from "../models/ExchangeRateList";
 import { getCurrentExchangeRateList } from "../services/exchangeRateListApi";
+import { pl } from '../../../shared/i18n';
 
 export const useFetchExchangeRates = () => {
   const [data, setData] = useState<ExchangeRateList | null>(null);
@@ -10,7 +11,7 @@ export const useFetchExchangeRates = () => {
   useEffect(() => {
     getCurrentExchangeRateList()
       .then(setData)
-      .catch(() => setError('Wystąpił błąd podczas pobierania kursów walut'))
+      .catch(() => setError(pl.loadingError))
       .finally(() => setLoading(false));
   }, []);
 
