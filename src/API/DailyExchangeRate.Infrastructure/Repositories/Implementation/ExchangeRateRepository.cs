@@ -34,5 +34,12 @@ namespace DailyExchangeRate.Infrastructure.Repositories.Implementation
             _context.ExchangeRateTableReadings.Add(reading);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<bool> ExchangeRateTableReadingExistsAsync(string no)
+        {
+            return await _context.ExchangeRateTableReadings
+                .AsNoTracking()
+                .AnyAsync(r => r.No == no);
+        }
     }
 }

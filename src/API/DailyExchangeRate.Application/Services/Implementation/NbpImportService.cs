@@ -26,10 +26,16 @@ namespace DailyExchangeRate.Application.Services.Implementation
             {
                 var content = await response.Content.ReadAsStringAsync();
                 var result = JsonConvert.DeserializeObject<IEnumerable<ExchangeRateTableReadingDto>>(content);
-                var reading = _mapper.Map(result.FirstOrDefault());
-                if (reading != null)
+                if (result != null && result.Any())
                 {
-                    await _repository.AddExchangeRateTableReadingAsync(reading);
+                    foreach (var item in result)
+                    {
+                        if (!await _repository.ExchangeRateTableReadingExistsAsync(item.No))
+                        {
+                            var reading = _mapper.Map(item);
+                            await _repository.AddExchangeRateTableReadingAsync(reading);
+                        }
+                    }
                 }
             }
             else
