@@ -55,9 +55,17 @@ npm run dev
 
 ### Database migrations
 - Migrations live under `src/API/DailyExchangeRate.Infrastructure/Migrations`.
+- Migrations are applied during API and Worker applications startup
 - To apply migrations using EF CLI (example):
 
+1) Install dotnet-ef
+
 ```bash
-dotnet ef database update --project src/API/DailyExchangeRate.Infrastructure/DailyExchangeRate.Infrastructure.csproj \
-  --startup-project src/API/DailyExchangeRate.API/DailyExchangeRate.API.csproj
+dotnet tool install --global dotnet-ef --version 10.*
+```
+
+2) Run migrations
+
+```bash
+dotnet ef database update --project src/API/DailyExchangeRate.Infrastructure/DailyExchangeRate.Infrastructure.csproj --startup-project src/API/DailyExchangeRate.API/DailyExchangeRate.API.csproj
 ```
