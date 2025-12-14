@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Quartz;
 using Serilog;
+using System.Reflection;
 
 
 var builder = Host.CreateApplicationBuilder(args);
@@ -14,6 +15,7 @@ var builder = Host.CreateApplicationBuilder(args);
 var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
 
 builder.Configuration
+    .SetBasePath(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location))
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"appsettings.{environment}.json", optional: true);
 
