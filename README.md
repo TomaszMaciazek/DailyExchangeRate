@@ -58,7 +58,7 @@ npm run dev
 - Migrations are applied during API and Worker applications startup
 - To apply migrations using EF CLI (example):
 
-1) Install dotnet-ef
+1) Install dotnet-ef tool
 
 ```bash
 dotnet tool install --global dotnet-ef --version 10.*
