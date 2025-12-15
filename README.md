@@ -3,7 +3,7 @@
 ## A small .NET backend + worker and a React frontend application that imports and exposes daily exchange rates from NBP api
 
 ### Repository layout
-- `API` — solution containing API and Worker projects
+- `API` — solution containing API and Worker .NET 10 projects
 - `Frontend` — Vite + React frontend application
 
 ### API solution items
@@ -15,7 +15,7 @@
 - `DailyExchangeRate.Worker` — background worker that imports exchange rates from NBP site and saves them in the databas
 
 ### Prerequisites
-- .NET 10
+- .NET 10 SDK
 - Node.js 18+
 - (Optional) `dotnet-ef` tools for applying migrations manually: `dotnet tool install --global dotnet-ef`
 
