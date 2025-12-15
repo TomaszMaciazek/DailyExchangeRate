@@ -5,7 +5,7 @@ import { pl } from "../../../shared/i18n";
 
 export const useFetchExchangeRates = () => {
   const [data, setData] = useState<ExchangeRateList | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
