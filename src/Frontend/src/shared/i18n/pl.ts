@@ -1,11 +1,13 @@
 export const pl = {
-    siteHeader: "Aktualne kursy walut - Narodowy Bank Polski",
-    tableNoLabel: 'Dane pobrane z tabeli nr',
+    code: 'Kod waluty',
+    currency: 'Nazwa waluty',
     effectiveDateLabel: 'Data publikacji danych:',
     loading: 'Ładowanie danych...',
     loadingError: 'Wystąpił błąd podczas pobierania kursów walut',
+    mid: 'Średni kurs',
     noData: 'Brak danych',
-    code: 'Kod waluty',
-    currency: 'Nazwa waluty',
-    mid: 'Średni kurs'
+    noItemsFound: 'Nie znaleziono danych spełniających kryteria wyszukiwania',
+    searchPlaceholder: 'Wyszukaj walutę',
+    siteHeader: "Aktualne kursy walut - Narodowy Bank Polski",
+    tableNoLabel: 'Dane pobrane z tabeli nr'
 };
