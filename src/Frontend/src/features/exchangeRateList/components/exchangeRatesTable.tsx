@@ -70,7 +70,7 @@ export const ExchangeRatesTable: FC<IExchangeRateTableProps> = ({ items }) => {
                       </tr>
                     );
                   })}
-                {filteredItems.length == 0 && (
+                {filteredItems.length === 0 && (
                   <tr className="py-3">
                     <td colSpan={3} className="text-center px-2 py-3">
                       <b>{pl.noItemsFound}</b>

@@ -1,4 +1,4 @@
-import { pl } from '../i18n/pl';
+import { pl } from '../i18n';
 
 export const LoadingSpinner = () => {
   return (
