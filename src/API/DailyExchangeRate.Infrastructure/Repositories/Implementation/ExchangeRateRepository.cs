@@ -14,7 +14,6 @@ namespace DailyExchangeRate.Infrastructure.Repositories.Implementation
         public async Task<ExchangeRateList?> GetCurrentExchangeRatesAsync() 
             => await _context.ExchangeRateTableReadings
                 .Include(r => r.Rates)
-                .AsNoTracking()
                 .OrderByDescending(r => r.EffectiveDate)
                 .Select(x => new ExchangeRateList
                 {
@@ -38,7 +37,6 @@ namespace DailyExchangeRate.Infrastructure.Repositories.Implementation
         public async Task<bool> ExchangeRateTableReadingExistsAsync(string no)
         {
             return await _context.ExchangeRateTableReadings
-                .AsNoTracking()
                 .AnyAsync(r => r.No == no);
         }
     }
