@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DailyExchangeRate.Application\DailyExchangeRate.Application.csproj" />
+    <ProjectReference Include="..\DailyExchangeRate.Infrastructure\DailyExchangeRate.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
