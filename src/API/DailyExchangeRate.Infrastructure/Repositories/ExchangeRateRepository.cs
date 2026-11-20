@@ -1,9 +1,9 @@
-﻿using DailyExchangeRate.Domain.Entities;
+﻿using DailyExchangeRate.Application.Repositories.Interfaces;
+using DailyExchangeRate.Domain.Entities;
 using DailyExchangeRate.Domain.Models;
-using DailyExchangeRate.Infrastructure.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace DailyExchangeRate.Infrastructure.Repositories.Implementation
+namespace DailyExchangeRate.Infrastructure.Repositories
 {
     public class ExchangeRateRepository : IExchangeRateRepository
     {
@@ -11,7 +11,7 @@ namespace DailyExchangeRate.Infrastructure.Repositories.Implementation
 
         public ExchangeRateRepository(ExchangeRateDbContext context) => _context = context;
 
-        public async Task<ExchangeRateList?> GetCurrentExchangeRatesAsync() 
+        public async Task<ExchangeRateList?> GetCurrentExchangeRatesAsync()
             => await _context.ExchangeRateTableReadings
                 .Include(r => r.Rates)
                 .OrderByDescending(r => r.EffectiveDate)
@@ -28,16 +28,16 @@ namespace DailyExchangeRate.Infrastructure.Repositories.Implementation
                 })
                 .FirstOrDefaultAsync();
 
-        public async Task AddExchangeRateTableReadingAsync(ExchangeRateTableReading reading)
+        public async Task AddExchangeRateTableReadingAsync(ExchangeRateTableReading reading, CancellationToken cancellationToken = default)
         {
             _context.ExchangeRateTableReadings.Add(reading);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<bool> ExchangeRateTableReadingExistsAsync(string no)
+        public async Task<bool> ExchangeRateTableReadingExistsAsync(string no, CancellationToken cancellationToken = default)
         {
             return await _context.ExchangeRateTableReadings
-                .AnyAsync(r => r.No == no);
+                .AnyAsync(r => r.No == no, cancellationToken);
         }
     }
 }

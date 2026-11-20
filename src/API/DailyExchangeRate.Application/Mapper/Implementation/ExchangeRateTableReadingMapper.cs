@@ -1,40 +1,26 @@
-﻿using DailyExchangeRate.Application.Dto;
+﻿using DailyExchangeRate.Application.Integrations.Nbp;
 using DailyExchangeRate.Application.Mapper.Interfaces;
 using DailyExchangeRate.Domain.Entities;
 
-namespace DailyExchangeRate.Application.Mapper.Implementation
-{
-    public class ExchangeRateTableReadingMapper : IExchangeRateTableReadingMapper
-    {
-        public ExchangeRateTableReading Map(ExchangeRateTableReadingDto source)
-        {
-            if (source == null)
-            {
-                return null;
-            }
-            return new ExchangeRateTableReading
-            {
-                Id = 0,
-                No = source.No,
-                Created = DateTime.Now,
-                EffectiveDate = source.EffectiveDate,
-                Rates = source.Rates?.Select(Map).ToList() ?? new List<ExchangeRate>()
-            };
-        }
+namespace DailyExchangeRate.Application.Mapper.Implementation;
 
-        private ExchangeRate Map(ExchangeRateDto source)
+public sealed class ExchangeRateTableReadingMapper : IExchangeRateTableReadingMapper
+{
+    public ExchangeRateTableReading Map(ExchangeRateTableData source)
+    {
+        ArgumentNullException.ThrowIfNull(source);
+
+        return new ExchangeRateTableReading
         {
-            if (source == null)
+            No = source.No,
+            EffectiveDate = source.EffectiveDate,
+            Created = DateTime.UtcNow,
+            Rates = source.Rates.Select(rate => new ExchangeRate
             {
-                return null;
-            }
-            return new ExchangeRate
-            {
-                Id = 0,
-                Currency = source.Currency,
-                Code = source.Code,
-                Mid = source.Mid
-            };
-        }
+                Code = rate.Code,
+                Currency = rate.Currency,
+                Mid = rate.Mid
+            }).ToList()
+        };
     }
 }

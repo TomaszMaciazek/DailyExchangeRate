@@ -1,46 +1,36 @@
-﻿using DailyExchangeRate.Application.Dto;
+﻿using DailyExchangeRate.Application.Integrations.Nbp;
 using DailyExchangeRate.Application.Mapper.Interfaces;
+using DailyExchangeRate.Application.Repositories.Interfaces;
 using DailyExchangeRate.Application.Services.Interfaces;
-using DailyExchangeRate.Infrastructure.Repositories.Interfaces;
-using Newtonsoft.Json;
 
 namespace DailyExchangeRate.Application.Services.Implementation
 {
-    public class NbpImportService : INbpImportService
+    public sealed class NbpImportService : INbpImportService
     {
-        private readonly HttpClient _http;
-        private readonly IExchangeRateRepository _repository;
-        private readonly IExchangeRateTableReadingMapper _mapper;
+        private readonly INbpRatesClient nbpRatesClient;
+        private readonly IExchangeRateRepository repository;
+        private readonly IExchangeRateTableReadingMapper mapper;
 
-        public NbpImportService(IHttpClientFactory httpClientFactory, IExchangeRateRepository repository, IExchangeRateTableReadingMapper mapper)
+        public NbpImportService(INbpRatesClient nbpRatesClient, IExchangeRateRepository repository, IExchangeRateTableReadingMapper mapper)
         {
-            _http = httpClientFactory.CreateClient("nbpClient");
-            _mapper = mapper;
-            _repository = repository;
+            this.nbpRatesClient = nbpRatesClient;
+            this.repository = repository;
+            this.mapper = mapper;
         }
 
-        public async Task ImportExchangeRatesAsync()
+        public async Task ImportExchangeRatesAsync(CancellationToken cancellationToken = default)
         {
-            var response = await _http.GetAsync("exchangerates/tables/b?format=json");
-            if (response.IsSuccessStatusCode)
+            var tables = await nbpRatesClient.GetLatestTableAsync(cancellationToken);
+
+            foreach (var table in tables)
             {
-                var content = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<IEnumerable<ExchangeRateTableReadingDto>>(content);
-                if (result != null && result.Any())
+                if (await repository.ExchangeRateTableReadingExistsAsync(table.No, cancellationToken))
                 {
-                    foreach (var item in result)
-                    {
-                        if (!await _repository.ExchangeRateTableReadingExistsAsync(item.No))
-                        {
-                            var reading = _mapper.Map(item);
-                            await _repository.AddExchangeRateTableReadingAsync(reading);
-                        }
-                    }
+                    continue;
                 }
-            }
-            else
-            {
-                throw new Exception("Failed to fetch exchange rates from NBP.");
+
+                var reading = mapper.Map(table);
+                await repository.AddExchangeRateTableReadingAsync(reading, cancellationToken);
             }
         }
     }

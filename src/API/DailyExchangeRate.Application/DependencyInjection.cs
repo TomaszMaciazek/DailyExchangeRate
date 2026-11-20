@@ -2,7 +2,6 @@
 using DailyExchangeRate.Application.Mapper.Interfaces;
 using DailyExchangeRate.Application.Services.Implementation;
 using DailyExchangeRate.Application.Services.Interfaces;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DailyExchangeRate.Application
@@ -16,16 +15,8 @@ namespace DailyExchangeRate.Application
             return services;
         }
 
-        public static IServiceCollection AddWorkerApplication(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddWorkerApplication(this IServiceCollection services)
         {
-            services.AddHttpClient(
-                "nbpClient",
-                client =>
-                {
-                    client.BaseAddress = new Uri(configuration["NbpApiUrl"]);
-                    client.Timeout = TimeSpan.FromSeconds(30);
-                }
-            );
             services.AddScoped<IExchangeRateTableReadingMapper, ExchangeRateTableReadingMapper>();
             services.AddScoped<INbpImportService, NbpImportService>();
             return services;

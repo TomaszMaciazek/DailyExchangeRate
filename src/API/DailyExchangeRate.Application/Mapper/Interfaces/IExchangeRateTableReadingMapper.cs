@@ -1,10 +1,10 @@
-﻿using DailyExchangeRate.Application.Dto;
+﻿using DailyExchangeRate.Application.Integrations.Nbp;
 using DailyExchangeRate.Domain.Entities;
 
 namespace DailyExchangeRate.Application.Mapper.Interfaces
 {
     public interface IExchangeRateTableReadingMapper
     {
-        ExchangeRateTableReading Map(ExchangeRateTableReadingDto source);
+        ExchangeRateTableReading Map(ExchangeRateTableData source);
     }
 }

@@ -1,7 +1,7 @@
 ﻿using DailyExchangeRate.Application.Dto;
 using DailyExchangeRate.Application.Mapper.Interfaces;
+using DailyExchangeRate.Application.Repositories.Interfaces;
 using DailyExchangeRate.Application.Services.Interfaces;
-using DailyExchangeRate.Infrastructure.Repositories.Interfaces;
 
 namespace DailyExchangeRate.Application.Services.Implementation
 {

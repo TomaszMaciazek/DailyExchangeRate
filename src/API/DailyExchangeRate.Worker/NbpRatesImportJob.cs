@@ -20,7 +20,7 @@ namespace DailyExchangeRate.Worker
             try
             {
                 _logger.LogInformation("Starting NBP exchange rates import job.");
-                await _nbpImportService.ImportExchangeRatesAsync();
+                await _nbpImportService.ImportExchangeRatesAsync(context.CancellationToken);
                 _logger.LogInformation("Finished NBP exchange rates import job successfully.");
             }
             catch (Exception ex)

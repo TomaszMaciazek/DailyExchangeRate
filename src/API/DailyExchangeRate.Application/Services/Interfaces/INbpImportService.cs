@@ -2,6 +2,6 @@
 {
     public interface INbpImportService
     {
-        Task ImportExchangeRatesAsync();
+        Task ImportExchangeRatesAsync(CancellationToken cancellationToken = default);
     }
 }

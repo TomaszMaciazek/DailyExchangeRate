@@ -29,7 +29,7 @@ var logger = new LoggerConfiguration()
 builder.Services.AddSerilog(logger);
 
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddWorkerApplication(builder.Configuration);
+builder.Services.AddWorkerApplication();
 
 builder.Services.AddQuartz(q =>
 {
